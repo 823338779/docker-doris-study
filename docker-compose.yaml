@@ -1,6 +1,6 @@
 services:
   init:
-    image: "apache-doris:2.0.9-fe"
+    image: "apache-doris:2.1.9-fe"
     hostname: "init"
     privileged: true
     entrypoint: 
@@ -13,7 +13,7 @@ services:
       doris_net:
         ipv4_address: 172.20.80.10
   fe:
-    image: "apache-doris:2.0.9-fe"
+    image: "apache-doris:2.1.9-fe"
     hostname: "fe"
     depends_on:
       - init
@@ -30,7 +30,7 @@ services:
       doris_net:
         ipv4_address: 172.20.80.2
   be:
-    image: "apache-doris:2.0.9-be"
+    image: "apache-doris:2.1.9-be"
     hostname: "be"
     depends_on:
       - fe

@@ -8,13 +8,15 @@
 
 ## 构建FE镜像
 
-从 https://doris.apache.org/zh-CN/download/ 下载doris二进制包保存到 docker-build/fe/resource 目录下，Architecture 根据需要选择，我这里使用的是 x64(avx2)。
+从 https://apache-doris-releases.oss-accelerate.aliyuncs.com/apache-doris-2.1.9-bin-arm64.tar.gz 下载doris二进制包保存到 docker-build/fe/resource 目录下，Architecture 根据需要选择，我这里使用的是 x64(avx2)。
+
+
 
 执行如下脚本：
 
 ```shell
 cd docker-build/fe
-docker build -t apache-doris:2.0.9-fe .
+docker build -t apache-doris:2.1.9-fe .
 ```
 
 ## 构建BE镜像
@@ -26,7 +28,7 @@ docker build -t apache-doris:2.0.9-fe .
 
 ```shell
 cd docker-build/be
-docker build -t apache-doris:2.0.9-be .
+docker build -t apache-doris:2.1.9-be .
 ```
 
 官方的init_be.sh脚本有一些问题，无法正常启动，我做了一些修改。

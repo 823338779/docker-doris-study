@@ -1,3 +1,6 @@
+.idea
 data
 docker-build/fe/resource/apache-doris-2.1.9-bin-arm64.tar.gz
 docker-build/be/resource/apache-doris-2.1.9-bin-arm64.tar.gz
+insert_mock_data/.gradle
+insert_mock_data/build

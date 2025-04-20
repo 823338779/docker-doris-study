@@ -54,31 +54,25 @@ public class OverwriteExecutor {
             "    t1.user_id;";
 
     public static void main(String[] args) throws InterruptedException, SQLException {
-        final Statement[] statement = {null};
-        final Session[] sessions = {null};
-        final long[] sessionStr = {0L};
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+                Statement statement = null;
                 try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-                    statement[0] = conn.createStatement();
+                    statement = conn.createStatement();
 
-//                    sql = "select * from cjl.example_range_tbl";
-                    Session session = ((StatementImpl) statement[0]).getSession();
-                    sessions[0] = session;
-                    sessionStr[0] = session.getThreadId();
+                    Session session = ((StatementImpl) statement).getSession();
                     System.out.println(session.getThreadId());
-                    boolean execute = statement[0].execute(sql);
+                    boolean execute = statement.execute(sql);
 
                 } catch (SQLException e) {
 //                    throw new RuntimeException(e);
                     e.printStackTrace();
 
-                }finally {
-                    if (statement[0] != null) {
+                } finally {
+                    if (statement != null) {
                         try {
-
-                            statement[0].close();
+                            statement.close();
                         } catch (SQLException e) {
                             throw new RuntimeException(e);
                         }

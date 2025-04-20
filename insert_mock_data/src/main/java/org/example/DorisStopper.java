@@ -27,29 +27,21 @@ public class DorisStopper {
 
 
     public static void main(String[] args) throws InterruptedException, SQLException {
-        final Statement[] statement = {null};
-        final long[] sessionStr = {0L};
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+                Statement statement = null;
                 try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-                    statement[0] = conn.createStatement();
+                    statement = conn.createStatement();
 
-//                    sql = "select * from cjl.example_range_tbl";
-                    Session session = ((StatementImpl) statement[0]).getSession();
-                    sessionStr[0] = session.getThreadId();
-                    System.out.println(session.getThreadId());
-                    statement[0].execute("kill query 132");
-
+                   statement.execute("kill query 134");
                 } catch (SQLException e) {
                     e.printStackTrace();
-//                    e.getSQLState()
-
                 }finally {
-                    if (statement[0] != null) {
+                    if (statement != null) {
                         try {
 
-                            statement[0].close();
+                            statement.close();
                         } catch (SQLException e) {
                             throw new RuntimeException(e);
                         }

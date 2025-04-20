@@ -39,7 +39,6 @@ public class DorisStopper {
                     Session session = ((StatementImpl) statement[0]).getSession();
                     sessionStr[0] = session.getThreadId();
                     System.out.println(session.getThreadId());
-                    statement[0].cancel();
                     statement[0].execute("kill query 132");
 
                 } catch (SQLException e) {

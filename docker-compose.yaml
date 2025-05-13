@@ -43,6 +43,7 @@ services:
       - PRIORITY_NETWORKS=172.20.80.0/24
     ports:
       - 8041:8040
+      - 9060:9060
     volumes:
       - ./data/be/storage:/opt/apache-doris/be/storage
       - ./data/be/script:/docker-entrypoint-initdb.d
